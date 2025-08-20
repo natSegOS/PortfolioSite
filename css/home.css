@@ -1,0 +1,83 @@
+/* Intro section */
+.home-intro {
+  padding-block: clamp(2rem, 6vh, 4rem);
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  max-width: 65ch; /* hint; lets lines breathe on wide screens */
+}
+
+#intro-name {
+  font-size: var(--step-4); /* biggest & boldest */
+  font-weight: 800;
+  color: var(--color-text); /* general color */
+  line-height: 1.05;
+  letter-spacing: 0.3px;
+}
+
+#intro-title {
+  font-size: var(--step-2);
+  font-weight: 700;
+  color: var(--color-secondary); /* secondary color */
+}
+
+#intro-greeting {
+  font-size: var(--step-1);
+  color: var(--color-text); /* general color */
+  opacity: 0.95;
+}
+
+#intro-bio {
+  margin-top: var(--space-s);
+  color: var(--color-text); /* general color */
+  max-width: 60ch;
+}
+
+/* Socials */
+.social-nav {
+  margin-top: var(--space-l);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-s);
+  align-items: center;
+  justify-content: flex-start; /* shifted toward the left */
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  --icon-size: 42px;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* circular border, icons & borders secondary; background primary */
+  border: var(--border-thin) solid var(--color-secondary);
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-secondary);
+
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.social-links a i {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Hover invert */
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--color-primary);            /* icon becomes primary */
+  background: var(--color-secondary);     /* bg becomes secondary */
+  border-color: var(--color-secondary);   /* border secondary */
+  transform: translateY(-2px);
+}
+
+/* Small screens: give a little more tap target */
+@media (max-width: 399.98px) {
+  .social-links a { --icon-size: 48px; }
+}
