@@ -1,50 +1,60 @@
-(function () {
-  const toggle = document.querySelector('.menu-toggle');
-  const links = document.querySelector('.nav-links');
-  const body = document.body;
+const toggle = document.querySelector('.menu-toggle');
+const links = document.querySelector('.nav-links');
+const body = document.body;
 
-  if (!toggle || !links) return;
+if (!toggle || !links) {
+	throw new Error('Class ".menu-toggle" or ".nav-links" missing from HTML');
+}
 
-  // Set up ARIA
-  toggle.setAttribute('aria-expanded', 'false');
-  toggle.setAttribute('aria-controls', 'primary-navigation');
-  links.setAttribute('id', 'primary-navigation');
+function closeMenu() {
+	links.classList.remove('open');
+	body.classList.remove('menu-open');
+	toggle.setAttribute('aria-expanded', 'false');
+}
 
-  function closeMenu() {
-    links.classList.remove('open');
-    body.classList.remove('menu-open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
+function openMenu() {
+	links.classList.add('open');
+	body.classList.add('menu-open');
+	toggle.setAttribute('aria-expanded', 'true');
+}
 
-  function openMenu() {
-    links.classList.add('open');
-    body.classList.add('menu-open');
-    toggle.setAttribute('aria-expanded', 'true');
-  }
+// setup ARIA
+toggle.setAttribute('aria-expanded', 'false');
+toggle.setAttribute('aria-controls', 'primary-navigation');
+links.setAttribute('id', 'primary-navigation');
 
-  toggle.addEventListener('click', () => {
-    const isOpen = links.classList.contains('open');
-    isOpen ? closeMenu() : openMenu();
-  });
+toggle.addEventListener('click', () => {
+	const isOpen = links.classList.contains('open');
 
-  // Close on escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
+	if (isOpen) {
+		closeMenu();
+	} else {
+		openMenu();
+	}
+});
 
-  // Close if clicking outside the dropdown (mobile)
-  document.addEventListener('click', (e) => {
-    if (!links.classList.contains('open')) return;
-    const withinMenu = links.contains(e.target) || toggle.contains(e.target);
-    if (!withinMenu) closeMenu();
-  });
+// close menu on escapes
+document.addEventListener('keydown', (input) => {
+	if (input.key === 'Escape') {
+		closeMenu();
+	}
+})
 
-  // When resizing to desktop, ensure menu state is clean
-  const mq = window.matchMedia('(min-width: 768px)');
-  mq.addEventListener('change', (evt) => {
-    if (evt.matches) {
-      // desktop: nav is always visible via CSS; remove mobile-only classes
-      closeMenu();
-    }
-  });
-})();
+// close menu when tapping outside
+document.addEventListener('click', (input) => {
+	if (!links.classList.contains('open')) { return; }
+
+	const isWithinMenu = links.contains(input.target) || toggle.contains(input.target);
+	if (!isWithinMenu) {
+		closeMenu();
+	}
+})
+
+// Ensure menu closes when resizing to desktop
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+mediaQuery.addEventListener('change', (changeEvent) => {
+	if (changeEvent.matches) {
+		closeMenu();
+	}
+});
+
