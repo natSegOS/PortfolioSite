@@ -17,6 +17,10 @@
 	--fs-m: clamp(1.25rem, var(--scale-factor) + 1.25rem, 1.5rem);
 	--fs-general: clamp(1rem, var(--scale-factor) + 1rem, 1.125rem);
 
+	--gap-horizontal: 10%;
+	--gap-s: 1.5rem;
+	--gap-xs: 0.8rem;
+
 	--border-thin: 2px;
 	--radius: 9999px;
 
@@ -25,6 +29,11 @@
 
 /* General */
 body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	margin: 0;
+
 	background: var(--clr-primary);
 	color: var(--clr-general);
 
@@ -61,11 +70,13 @@ a:focus-visible {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
+	padding: var(--gap-s) var(--gap-horizontal);
 }
 
 .logo .site-title {
 	font-size: var(--fs-m);
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .menu-toggle {
@@ -86,6 +97,8 @@ a:focus-visible {
 .nav-links {
 	display: none; /* mobile default (shown via JS)*/
 	align-items: center;
+
+	gap: var(--gap-s);
 }
 
 .nav-links a {
@@ -97,6 +110,9 @@ a:focus-visible {
 	border: var(--border-thin) solid var(--clr-general);
 	color: var(--clr-general);
 	border-radius: var(--radius);
+
+	/* TODO: find out how to make more space between border and text */
+	padding: 10px;
 }
 
 .nav-cta-button:hover,

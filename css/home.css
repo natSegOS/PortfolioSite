@@ -1,22 +1,75 @@
+#main-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+
+	padding: 0 var(--gap-horizontal);
+}
+
 /* Intro Section */
 #home-intro {
 	display: grid;
 	align-content: start;
 	max-width: 65ch;
+
+	gap: var(--gap-s);
 }
 
-#intro-name {
+#intro-greeting {
+	gap: var(--gap-xs);
+}
+
+#intro-greeting #intro-name {
 	font-size: var(--fs-xl);
 	font-weight: 800;
 }
 
-#intro-title {
+#intro-greeting #intro-title {
 	font-size: var(--fs-l);
+	font-weight: 700;
+
 	color: var(--clr-secondary);
 }
 
-#intro-greeting {
-	font-size: var(--fs-m);
-	opacity: 0.9;
+/* Socials */
+.social-links {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	gap: var(--gap-s);
+}
+
+.social-links a {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	border: var(--border-thin) solid var(--clr-secondary);
+	border-radius: var(--radius);
+	background: var(--clr-primary);
+	color: var(--clr-secondary);
+
+	padding: var(--gap-xs);
+	overflow: hidden;
+	
+	transition: background-color var(--transition), border-color var(--transition)
+}
+
+.social-links a i {
+	color: var(--clr-secondary);
+	transition: color var(--transition);
+}
+
+.social-links a:hover i,
+.social-links a:focus-visible i {
+	color: var(--clr-primary);
+	border-color: var(--clr-secondary);
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+	background: var(--clr-secondary);
 }
 
