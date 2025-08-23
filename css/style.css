@@ -4,26 +4,42 @@
 
 /* Standardized Stylig */
 :root {
-	--scale-factor: 0.25vw; /* controls how aggressive values scale with viewport size */
+	--scale-factor: 0.5vw; /* controls how aggressive values scale with viewport size */
 
-	--clr-primary: #081b29;
+	/* colors */
+	--clr-primary: #332020;
 	--clr-secondary: #ff7a7a;
 	--clr-general: #fff;
 
 	--ff-general: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Aria, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-	--fs-xl: clamp(3rem, var(--scale-factor) + 3rem, 4rem);
-	--fs-l: clamp(1.5rem, var(--scale-factor) + 1.5rem, 2rem);
-	--fs-m: clamp(1.25rem, var(--scale-factor) + 1.25rem, 1.5rem);
-	--fs-general: clamp(1rem, var(--scale-factor) + 1rem, 1.125rem);
+	/* font sizes */
+	--fs-xl-min: 2.25rem;
+	--fs-xl-max: 4rem;
+	--fs-xl: clamp(var(--fs-xl-min), var(--scale-factor) + var(--fs-xl-min), var(--fs-xl-max));
 
+	--fs-l-min: 1.4rem;
+	--fs-l-max: 2rem;
+	--fs-l: clamp(var(--fs-l-min), var(--scale-factor) + var(--fs-l-min), var(--fs-l-max));
+
+	--fs-m-min: 1.25rem;
+	--fs-m-max: 1.5rem;
+	--fs-m: clamp(var(--fs-m-min), var(--scale-factor) + var(--fs-m-min), var(--fs-m-max));
+
+	--fs-general-min: 1rem;
+	--fs-general-max: 1.125rem;
+	--fs-general: clamp(var(--fs-general-min), var(--scale-factor) + var(--fs-general-min), var(--fs-general-max));
+
+	/* spacing */
 	--gap-horizontal: 10%;
 	--gap-s: 1.5rem;
 	--gap-xs: 0.8rem;
 
+	/* shapes */
 	--border-thin: 2px;
 	--radius: 9999px;
 
+	/* animations */
 	--transition: 0.3s;
 }
 
